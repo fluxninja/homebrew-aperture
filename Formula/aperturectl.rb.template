@@ -1,0 +1,34 @@
+# vim: ft=ruby
+# Documentation: https://docs.brew.sh/Formula-Cookbook
+#                https://rubydoc.brew.sh/Formula
+class Aperturectl < Formula
+  desc "CLI for flow control and reliability management for modern web applications"
+  homepage "https://www.fluxninja.com"
+  url "https://api.github.com/repos/fluxninja/aperture/tarball/${REF}"
+  version "${VERSION}"
+  sha256 "${SHA256}"
+  license "Apache-2.0"
+
+  depends_on "go" => :build
+
+  def install
+    ENV["GIT_BRANCH"]="${GIT_BRANCH}"
+    ENV["GIT_COMMIT_HASH"]="${GIT_COMMIT_HASH}"
+    ENV["SOURCE"]="./cmd/aperturectl"
+    ENV["TARGET"]=bin/name
+    ENV["VERSION"]=version
+    ENV["PREFIX"]="aperture"
+    ENV["LDFLAGS"]="-s -w"
+    system "./pkg/info/build.sh"
+
+    generate_completions_from_executable(bin/name, "completion")
+  end
+
+  test do
+    # `test do` will create, run in and delete a temporary directory.
+    #
+    # The installed folder is not in the path, so use the entire path to any
+    # executables being tested: `system "#{bin}/program", "do", "something"`.
+    assert_match "aperturectl version #{version.to_s}", shell_output("#{bin}/aperturectl --version")
+  end
+end
