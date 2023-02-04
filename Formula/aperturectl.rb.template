@@ -1,10 +1,7 @@
-# vim: ft=ruby
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
 class Aperturectl < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://api.github.com/repos/fluxninja/aperture/tarball/${REF}"
+  url "https://github.com/fluxninja/aperture/archive/refs/tags/${REF}.tar.gz"
   version "${VERSION}"
   sha256 "${SHA256}"
   license "Apache-2.0"
@@ -25,10 +22,6 @@ class Aperturectl < Formula
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    assert_match "aperturectl version #{version.to_s}", shell_output("#{bin}/aperturectl --version")
+    assert_match "aperturectl version #{version}", shell_output("#{bin}/aperturectl --version")
   end
 end
