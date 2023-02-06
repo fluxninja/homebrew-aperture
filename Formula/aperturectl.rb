@@ -1,8 +1,8 @@
 class Aperturectl < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://github.com/fluxninja/aperture/archive/refs/tags/v0.22.0-rc.2.tar.gz"
-  sha256 "5f9ee4e98a9a0375c1e58165a9d76e09d506b8ba49758872843f929393ade659"
+  url "https://github.com/fluxninja/aperture/archive/refs/tags/v0.22.0.tar.gz"
+  sha256 "fc9898e6c1fede384abfe6da67c571f8cba5df22e235d7f792c2dd997656336c"
   license "Apache-2.0"
 
   depends_on "go" => :build
