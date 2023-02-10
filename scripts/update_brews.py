@@ -69,7 +69,7 @@ class ClonedRepo(Repo):
         return self.git("rev-parse", "--abbrev-ref", "HEAD")
 
     def get_commit_hash(self, ref: str = "HEAD") -> str:
-        return self.git("log", ref, "-n=1", "--format=%H")
+        return self.git("log", ref, "-n1", "--format=%H")
 
     def is_tag(self, tag: str) -> bool:
         try:
@@ -141,8 +141,18 @@ def get_aperture_repo():
             yield cloned_repo
 
 
-def main(files) -> None:
+def main(files) -> int:
     logging.basicConfig(level=logging.DEBUG)
+    if not files:
+        print(f"USAGE: {__file__} <formulas>")
+        print("You can set following env vars:")
+        print("APERTURE_DIR - path to local aperture, to skip cloning the repo")
+        print("BRANCH - override the branch to set in the formula")
+        print("VERSION - use this version (instead of latest)")
+        print("EXAMPLE:")
+        print('BRANCH=stable/v0.23.x VERSION=v0.23.0-rc.1 APERTURE_DIR=../aperture scripts/update_brews.py Formula/aperturectl.rb')
+        return 1
+
     with get_aperture_repo() as repo:
         branch = os.environ.get("BRANCH") or repo.get_current_branch()
         version = os.environ.get("VERSION") or get_latest_release(
@@ -157,7 +167,8 @@ def main(files) -> None:
             sha256=get_remote_file_sha256(url),
         )
         update_formulas(map(Path, files), replacements)
+    return 0
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    sys.exit(main(sys.argv[1:]))
