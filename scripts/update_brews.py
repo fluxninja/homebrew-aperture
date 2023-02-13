@@ -50,8 +50,8 @@ class Repo:
     def get_clone_url(self) -> str:
         return f"https://github.com/{self.owner}/{self.name}.git"
 
-    def get_tag_tarball_url(self, ref: str) -> str:
-        return f"https://github.com/{self.owner}/{self.name}/archive/refs/tags/{ref}.tar.gz"
+    def get_tarball_url(self, ref: str) -> str:
+        return f"https://github.com/{self.owner}/{self.name}/archive/{ref}.tar.gz"
 
 
 @dataclasses.dataclass(frozen=True)
@@ -159,7 +159,7 @@ def main(files) -> int:
             repo.get_version_tags())
         assert repo.is_tag(version), f"{version} is not a tag!"
         commit_hash = repo.get_commit_hash(ref=version)
-        url = repo.get_tag_tarball_url(version)
+        url = repo.get_tarball_url(version)
         replacements = dict(
             GIT_BRANCH=branch,
             GIT_COMMIT_HASH=commit_hash,
