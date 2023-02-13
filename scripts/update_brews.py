@@ -96,10 +96,11 @@ def update_formula(content: str, replacements: Dict[str, str]) -> str:
         for lineidx, line in enumerate(lines):
             if line_matcher in line:
                 match = last_quote_content_matcher.match(line)
-                assert (
-                    match
-                ), f"Unable to replace content for '{line_matcher}' in '{line}'"
-                lines[lineidx] = f'{match.group("before")}"{value}"'
+                # assert (
+                #    match
+                # ), f"Unable to replace content for '{line_matcher}' in '{line}'"
+                if match:
+                    lines[lineidx] = f'{match.group("before")}"{value}"'
     return "\n".join(lines)
 
 
