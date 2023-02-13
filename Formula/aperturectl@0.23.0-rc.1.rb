@@ -5,6 +5,8 @@ class AperturectlAT0230Rc1 < Formula
   sha256 "0e82987d909ba55d97b06f807f7b12815d941ad698e19c5164112b172582f386"
   license "Apache-2.0"
 
+  keg_only :versioned_formula
+
   depends_on "go" => :build
 
   def install

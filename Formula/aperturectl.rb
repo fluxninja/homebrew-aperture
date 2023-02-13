@@ -4,6 +4,7 @@ class Aperturectl < Formula
   url "https://github.com/fluxninja/aperture/archive/refs/tags/v0.22.0.tar.gz"
   sha256 "fc9898e6c1fede384abfe6da67c571f8cba5df22e235d7f792c2dd997656336c"
   license "Apache-2.0"
+  head "https://github.com/fluxninja/aperture.git", branch: "main"
 
   depends_on "go" => :build
 
