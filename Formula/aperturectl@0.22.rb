@@ -14,7 +14,7 @@ class AperturectlAT022 < Formula
     ENV["GIT_BRANCH"]="stable/v0.22.x"
     ENV["GIT_COMMIT_HASH"]="d9e2d93361c672b81bff0d623f7c4407a13e9299"
     ENV["SOURCE"]="./cmd/aperturectl"
-    ENV["TARGET"]=bin/name
+    ENV["TARGET"]=bin/"aperturectl"
     ENV["VERSION"]=version
     ENV["PREFIX"]="aperture"
     ENV["LDFLAGS"]="-s -w"
@@ -29,7 +29,7 @@ class AperturectlAT022 < Formula
 
     system "./pkg/info/build.sh"
 
-    generate_completions_from_executable(bin/name, "completion")
+    generate_completions_from_executable(bin/"aperturectl", "completion")
   end
 
   test do
