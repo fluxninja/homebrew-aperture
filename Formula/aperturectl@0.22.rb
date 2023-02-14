@@ -1,5 +1,4 @@
-
-class Aperturectl < Formula
+class AperturectlAT022 < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
   url "https://github.com/fluxninja/aperture/archive/v0.22.0.tar.gz"

@@ -244,7 +244,9 @@ class Formula:
                 raise FileExistsError(new_path)
             if not recreate:
                 return new_formula
-        new_path.write_bytes(self._path.read_bytes())
+        content = self._path.read_text()
+        new_path.write_text(self._change_formula_class_version(
+            content, str(new_version)))
         return new_formula
 
     def delete(self) -> None:
@@ -260,6 +262,22 @@ class Formula:
         if changed:
             self._path.write_text(new_content)
         return changed
+
+    @staticmethod
+    def _change_formula_class_version(content: str, version: str) -> str:
+        lines = content.split("\n")
+        assert lines
+        class_line = lines[0]
+        line_split = class_line.split()
+        assert len(line_split) == 4
+        assert line_split[0] == "class"
+        assert line_split[2] == "<"
+        assert line_split[3] == "Formula"
+        class_name = line_split[1].split("AT")[0]
+        class_version = version.replace(".", "")
+        line_split[1] = f"{class_name}AT{class_version}"
+        lines[0] = ' '.join(line_split)
+        return "\n".join(lines)
 
     @staticmethod
     def _set_keg_only(content: str) -> str:
