@@ -13,7 +13,6 @@ class Aperturectl < Formula
     git_commit_hash="34908723776963a9de9d88aff476da50831a3e5d"
 
     require "open3"
-    require "fileutils"
     if build.head?
       head_branch="main"
       stdout, status = Open3.capture2("git", "log", "-n1", "--format=%H")
@@ -30,8 +29,8 @@ class Aperturectl < Formula
     odie "Failed to build aperturectl" if status != 0
 
     # Move the binary into the final location
-    FileUtils.mkdir_p bin
-    FileUtils.mv stdout, bin/"aperturectl"
+    makedirs bin
+    mv stdout, bin/"aperturectl"
 
     generate_completions_from_executable(bin/"aperturectl", "completion")
   end
