@@ -1,8 +1,8 @@
 class AperturectlAT10 < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://github.com/fluxninja/aperture/archive/v1.0.0.tar.gz"
-  sha256 "6bb6f9b64d71221daba779983b64a7f5905e1cddd708190f3b8b65435a8e7bfc"
+  url "https://github.com/fluxninja/aperture/archive/v1.0.0-rc.3.tar.gz"
+  sha256 "ad4e5a5c21af9b4b7551510f73dabb0969859e0d8598b7eefcfb1ed9f01b1896"
   license "Apache-2.0"
   head "https://github.com/fluxninja/aperture.git", branch: "stable/v1.0.x"
 
@@ -11,23 +11,28 @@ class AperturectlAT10 < Formula
   depends_on "go" => :build
 
   def install
-    ENV["GIT_BRANCH"]="stable/v1.0.x"
-    ENV["GIT_COMMIT_HASH"]="7b6653a9381f989755f496723aee46f2bf902d76"
-    ENV["SOURCE"]="./cmd/aperturectl"
-    ENV["TARGET"]=bin/"aperturectl"
-    ENV["VERSION"]=version
-    ENV["PREFIX"]="aperture"
-    ENV["LDFLAGS"]="-s -w"
+    git_branch="stable/v1.0.x"
+    git_commit_hash="f3b2cb0109c5f5f899ce8a1ba42030445e5fe094"
+
+    require "open3"
     if build.head?
       head_branch="stable/v1.0.x"
-      require "open3"
       stdout, status = Open3.capture2("git", "log", "-n1", "--format=%H")
       odie "Unable to get commit hash for head build" if status != 0
-      ENV["GIT_COMMIT_HASH"]=stdout
-      ENV["GIT_BRANCH"]=head_branch
+      git_commit_hash=stdout
+      git_branch=head_branch
     end
 
-    system "./pkg/info/build.sh"
+    ENV["APERTURECTL_BUILD_VERSION"]=version
+    ENV["APERTURECTL_BUILD_GIT_BRANCH"]=git_branch
+    ENV["APERTURECTL_BUILD_GIT_COMMIT_HASH"]=git_commit_hash
+
+    stdout, status = Open3.capture2("./scripts/build_aperturectl.sh", buildpath/"cmd/aperturectl")
+    odie "Failed to build aperturectl" if status != 0
+
+    # Move the binary into the final location
+    makedirs bin
+    mv stdout, bin/"aperturectl"
 
     generate_completions_from_executable(bin/"aperturectl", "completion")
   end

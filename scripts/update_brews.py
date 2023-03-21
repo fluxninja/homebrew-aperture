@@ -314,20 +314,25 @@ class FormulaReplacements:
     def as_replacements(self) -> Iterable[Replacement]:
         return (
             Replacement(self.install_branch,
-                        lambda line: "GIT_BRANCH" in line),
+                        lambda line: 'git_branch' in line and '"' in line),
+            Replacement(self.commit_hash,
+                        lambda line: 'git_commit_hash' in line and '"' in line),
             Replacement(self.head_branch,
                         lambda line: "branch:" in line.split()),
             Replacement(self.head_branch,
                         lambda line: "head_branch=" in line),
-            Replacement(self.commit_hash,
-                        lambda line: "GIT_COMMIT_HASH" in line),
             Replacement(self.archive_url, lambda line: "url" in line),
             Replacement(self.archive_hash, lambda line: "sha256" in line),
+            # Legacy replacements from build.sh era
+            Replacement(self.install_branch,
+                        lambda line: '"GIT_BRANCH"' in line),
+            Replacement(self.commit_hash,
+                        lambda line: '"GIT_COMMIT_HASH"' in line),
         )
 
     def apply(self, content: str) -> str:
         lines = content.split("\n")
-        for replacement in self.as_replacements():
+        for idx, replacement in enumerate(self.as_replacements()):
             for lineidx, line in enumerate(lines):
                 if replacement.matches(line):
                     match = last_quote_content_matcher.match(line)
@@ -336,7 +341,7 @@ class FormulaReplacements:
                         # We only replace in first matching line
                         break
             else:
-                logging.warning(f"No lines matched for replacement for {self}")
+                logging.warning(f"No lines matched for replacement nr. {idx}: {replacement.value}")
         return "\n".join(lines)
 
 
