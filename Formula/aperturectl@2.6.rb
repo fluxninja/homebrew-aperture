@@ -1,22 +1,22 @@
-class AperturectlAT23 < Formula
+class AperturectlAT26 < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://github.com/fluxninja/aperture/archive/v2.3.3.tar.gz"
-  sha256 "157f4e1d05f05bb5bb8c804b8580f893617631ccde155675eab43c3cf4e3889a"
+  url "https://github.com/fluxninja/aperture/archive/v2.6.0-rc.1.tar.gz"
+  sha256 "1c10f7ff78b66fa4bd2663c7df960ccb4a574589f49aeb0ad9fead8fde47ade2"
   license "Apache-2.0"
-  head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.3.x"
+  head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.6.x"
 
   keg_only :versioned_formula
 
   depends_on "go" => :build
 
   def install
-    git_branch="stable/v2.3.x"
-    git_commit_hash="f6f284dc8616dd3074283d9c2219782b6625deed"
+    git_branch="stable/v2.6.x"
+    git_commit_hash="42634e3a4979155aa2e73ee3cf039f64e83c923c"
 
     require "open3"
     if build.head?
-      head_branch="stable/v2.3.x"
+      head_branch="stable/v2.6.x"
       stdout, status = Open3.capture2("git", "log", "-n1", "--format=%H")
       odie "Unable to get commit hash for head build" if status != 0
       git_commit_hash=stdout
