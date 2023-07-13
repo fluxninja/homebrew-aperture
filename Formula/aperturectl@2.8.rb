@@ -6,6 +6,12 @@ class AperturectlAT28 < Formula
   license "Apache-2.0"
   head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.8.x"
 
+  bottle do
+    root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl@2.8-2.8.1-rc.1"
+    sha256 cellar: :any_skip_relocation, monterey:     "f809610c442c39992f3fe6a73ad3af69f58ee2f6ae457c912f6d9c44bbee31da"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "e1f9dd5e1fb0ed7b953105915f51532a92fb6c1e51156e5f3724ef73faf51ccb"
+  end
+
   keg_only :versioned_formula
 
   depends_on "go" => :build
