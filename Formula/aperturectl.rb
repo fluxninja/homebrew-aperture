@@ -1,16 +1,16 @@
 class Aperturectl < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://github.com/fluxninja/aperture/archive/v2.8.2.tar.gz"
-  sha256 "7e94160cef5ec3beee9c74a82c8e676dea05ef7f52fc1995dfd4941334b4e885"
+  url "https://github.com/fluxninja/aperture/archive/v2.9.0.tar.gz"
+  sha256 "2f5b266c612afaf08dfe34e5d7cb43d1cfde96c736d29974a3ef684e0a001f3e"
   license "Apache-2.0"
   head "https://github.com/fluxninja/aperture.git", branch: "main"
 
   depends_on "go" => :build
 
   def install
-    git_branch="stable/v2.8.x"
-    git_commit_hash="e897c94e8efd007a00189774c09b788b5f27ad3e"
+    git_branch="stable/v2.9.x"
+    git_commit_hash="0a8955eef8773949bce78083e22ac35fc6ff4a91"
 
     require "open3"
     if build.head?
