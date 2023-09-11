@@ -1,22 +1,22 @@
-class AperturectlAT212 < Formula
+class AperturectlAT215 < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://github.com/fluxninja/aperture/archive/v2.12.3-rc.1.tar.gz"
-  sha256 "735dd4941f12beb351aa0910d0a0ac397238d3666d533ef2bd0378119f7a1d0c"
+  url "https://github.com/fluxninja/aperture/archive/v2.15.0-rc.1.tar.gz"
+  sha256 "a6c491e22f491df42ca86f39a2a6647fe3023078c799f0c09d377bf21af4b611"
   license "Apache-2.0"
-  head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.12.x"
+  head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.15.x"
 
   keg_only :versioned_formula
 
   depends_on "go" => :build
 
   def install
-    git_branch="stable/v2.12.x"
-    git_commit_hash="0b02d4537a029c7325fd649ffdc3c1d2f9838658"
+    git_branch="stable/v2.15.x"
+    git_commit_hash="16d9f6ae1e50fb26ef4b54da7f7cb0e0d5bd5275"
 
     require "open3"
     if build.head?
-      head_branch="stable/v2.12.x"
+      head_branch="stable/v2.15.x"
       stdout, status = Open3.capture2("git", "log", "-n1", "--format=%H")
       odie "Unable to get commit hash for head build" if status != 0
       git_commit_hash=stdout
