@@ -6,6 +6,12 @@ class Aperturectl < Formula
   license "Apache-2.0"
   head "https://github.com/fluxninja/aperture.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl-2.18.2"
+    sha256 cellar: :any_skip_relocation, monterey:     "4f32445ec2e57d760ef88977c9bbc5bc57b00a43e139d3d970766d8eb2cba08a"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "aa1c1c2d3d50f21dd336af7e342e6d788a133a19d5ff3eb45462702099eae3e9"
+  end
+
   depends_on "go" => :build
 
   def install
