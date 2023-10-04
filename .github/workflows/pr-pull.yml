@@ -1,9 +1,5 @@
 name: brew pr-pull
 on:
-  workflow_run: 
-    workflows: ["brew test-bot"]
-    types: 
-      - completed
   pull_request_target:
     types:
       - labeled
@@ -26,7 +22,13 @@ jobs:
           HOMEBREW_GITHUB_PACKAGES_TOKEN: ${{ github.token }}
           HOMEBREW_GITHUB_PACKAGES_USER: ${{ github.actor }}
           PULL_REQUEST: ${{ github.event.pull_request.number }}
-        run: brew pr-pull --debug --tap=$GITHUB_REPOSITORY $PULL_REQUEST
+        uses: nick-fields/retry@v2
+        with:
+          max_attempts: 5
+          timeout_minutes: 10
+          retry_wait_seconds: 300
+          command: |
+            brew pr-pull --debug --tap=$GITHUB_REPOSITORY $PULL_REQUEST
 
       - name: Push commits
         uses: Homebrew/actions/git-try-push@master
