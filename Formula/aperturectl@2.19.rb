@@ -1,8 +1,8 @@
 class AperturectlAT219 < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://github.com/fluxninja/aperture/archive/v2.19.0-rc.1.tar.gz"
-  sha256 "99b3cf18c55d6cf6c941afd28ff9af3159a84665ce09e41edce58bce6f086677"
+  url "https://github.com/fluxninja/aperture/archive/v2.19.0-rc.2.tar.gz"
+  sha256 "3fb85aa4add4e5d81bd0f3753bdabf2ef3b8b4ca4a641733da7bbac0035972a1"
   license "Apache-2.0"
   head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.19.x"
 
@@ -18,7 +18,7 @@ class AperturectlAT219 < Formula
 
   def install
     git_branch="stable/v2.19.x"
-    git_commit_hash="e2179ee5bd8ee07d0543ce87a41dbc50ebf024a1"
+    git_commit_hash="6666f2d495163df366bc516ccd24105681a9a636"
 
     require "open3"
     if build.head?
