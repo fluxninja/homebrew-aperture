@@ -28,7 +28,7 @@ jobs:
           timeout_minutes: 10
           retry_wait_seconds: 300
           command: |
-            brew pr-pull --debug --tap=$GITHUB_REPOSITORY $PULL_REQUEST
+            brew pr-pull --debug --tap=$GITHUB_REPOSITORY $PULL_REQUEST --no-cherry-pick
 
       - name: Push commits
         uses: Homebrew/actions/git-try-push@master
