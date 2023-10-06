@@ -4,6 +4,14 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, labeled]
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.repository }}-update-brew-tests
+
 jobs:
   test-bot:
     strategy:
@@ -44,3 +52,11 @@ jobs:
         with:
           name: bottles
           path: '*.bottle.*'
+      
+      - if: contains(github.event.pull_request.labels.*.name, 'pr-pull') && matrix.os == 'macos-12'
+        name: Trigger pr-pull workflow
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: brew install gh && gh workflow run pr-pull.yml -f pull_request_number=$PR_NUMBER -f pull_request_branch=$PR_BRANCH
