@@ -56,4 +56,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           PR_BRANCH: ${{ github.event.pull_request.head.ref }}
-        run: gh workflow run "brew pr-pull" -f pull_request_number=$PR_NUMBER -f pull_request_branch=$PR_BRANCH
+        run: gh workflow run pr-pull.yml -f pull_request_number=$PR_NUMBER -f pull_request_branch=$PR_BRANCH
