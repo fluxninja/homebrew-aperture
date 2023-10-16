@@ -11,7 +11,7 @@ class AperturectlAT220 < Formula
     sha256 cellar: :any_skip_relocation, monterey:     "dc42abd32d3191e0801cd0ede9ed691ed291716fdd0b672f0a454905c7337a84"
     sha256 cellar: :any_skip_relocation, x86_64_linux: "02a5b85dd2445ba8807008e7fc774c971e18f7021d69420e7802f6b5ce6b69e7"
   end
-  
+
   keg_only :versioned_formula
 
   depends_on "go" => :build
