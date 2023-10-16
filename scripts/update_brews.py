@@ -285,8 +285,8 @@ class Formula:
         place_for_keg = None
         for lineidx, line in enumerate(lines):
             parts = line.split()
-            if not place_for_keg and "head" in parts:
-                place_for_keg = lineidx + 1
+            if not place_for_keg and "depends_on" in parts:
+                place_for_keg = lineidx - 1
             if "keg_only" in parts:
                 return content
         assert place_for_keg
