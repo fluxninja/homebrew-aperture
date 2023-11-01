@@ -54,7 +54,7 @@ class Repo:
         return f"https://github.com/{self.owner}/{self.name}.git"
 
     def get_tarball_url(self, ref: str) -> str:
-        return f"https://github.com/{self.owner}/{self.name}/archive/{ref}.tar.gz"
+        return f"https://github.com/{self.owner}/{self.name}/archive/refs/tags/{ref}.tar.gz"
 
 
 @dataclasses.dataclass(frozen=True)
