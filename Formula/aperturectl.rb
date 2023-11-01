@@ -1,17 +1,10 @@
 class Aperturectl < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://github.com/fluxninja/aperture/archive/v2.22.0.tar.gz"
+  url "https://github.com/fluxninja/aperture/archive/refs/tags/v2.22.0.tar.gz"
   sha256 "df2074755ce3f760075c485faee54ad9888d5089ae08db1e94d581f6fdce63e0"
   license "Apache-2.0"
   head "https://github.com/fluxninja/aperture.git", branch: "main"
-
-  bottle do
-    root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl-2.21.0"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, monterey:     "37dde3286ede8fd6d108da471fe83fe8283d793e08ed7616fe65dd1f032cacb8"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "3f84bfc8cfdb10f55cbeb77f2e23fc228667ecc32487845d7c6e185d511bedd4"
-  end
 
   depends_on "go" => :build
 
