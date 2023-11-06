@@ -8,9 +8,9 @@ class AperturectlAT221 < Formula
 
   bottle do
     root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl@2.21-2.21.0"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, monterey:     "d67bb69a7f0179d92e84a10bf3fa23dc15cd2b8e0037dc2071bbfb1d1058d442"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "1fc5af4f658c85743aa71ec2ce8c1ab71d8f8b96c2afbe8a6379460b1ad23874"
+    rebuild 2
+    sha256 cellar: :any_skip_relocation, monterey:     "71e46adc3b7638eb61810a2be11a237f6e6e229b42195b598a5b0522d77befc0"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "fd4b4d13e66ae9a59215c75834b3e696773a8c0a7de4a2959d0f5d7a1d0709c2"
   end
 
   keg_only :versioned_formula
