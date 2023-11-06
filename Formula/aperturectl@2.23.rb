@@ -1,15 +1,15 @@
-class AperturectlAT220 < Formula
+class AperturectlAT223 < Formula
   desc "CLI for flow control and reliability management for modern web applications"
   homepage "https://www.fluxninja.com"
-  url "https://github.com/fluxninja/aperture/archive/refs/tags/v2.20.2.tar.gz"
-  sha256 "6c399ee02a1567950bed627542331fdd461aa845c7d765dcc8460664b084c869"
+  url "https://github.com/fluxninja/aperture/archive/refs/tags/v2.23.0-rc.1.tar.gz"
+  sha256 "ab9f2eed282e511caafb24fb996dc43f52bf0219ca320f75d8f96270ee410633"
   license "Apache-2.0"
-  head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.20.x"
+  head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.23.x"
 
   bottle do
-    root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl@2.20-2.20.2"
-    sha256 cellar: :any_skip_relocation, monterey:     "b342f2ba386fe7dfca71f196358b38ea17aa444f10c1bbf95fad2b5bbd6c1572"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "ee52c0402f37e81fe0341d25d7d9ecc99d3b75a9cff248f3dfa67d52e08dfdae"
+    root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl-2.22.1"
+    sha256 cellar: :any_skip_relocation, monterey:     "658194d6834107fa3598429a2dc2fcd588c3f88862865d17897c78d7f2b7bc7f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "8a592077ad246fc6859932b38970cd2c22cc63e476a6735d716128826b6958f9"
   end
 
   keg_only :versioned_formula
@@ -17,12 +17,12 @@ class AperturectlAT220 < Formula
   depends_on "go" => :build
 
   def install
-    git_branch="stable/v2.20.x"
-    git_commit_hash="6f0c4e269273659249bdbad68c7c97288db42611"
+    git_branch="stable/v2.23.x"
+    git_commit_hash="7399b5404f42b03c4f62020838230dfcea7ac44e"
 
     require "open3"
     if build.head?
-      head_branch="stable/v2.20.x"
+      head_branch="stable/v2.23.x"
       stdout, status = Open3.capture2("git", "log", "-n1", "--format=%H")
       odie "Unable to get commit hash for head build" if status != 0
       git_commit_hash=stdout
