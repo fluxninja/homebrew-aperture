@@ -4,7 +4,7 @@ class AperturectlAT221 < Formula
   url "https://github.com/fluxninja/aperture/archive/refs/tags/v2.21.0.tar.gz"
   sha256 "cf1ffa4691644a424077f7f20ef4c0c0228de5858f9d772649c2e4bb7bfc2b5c"
   license "Apache-2.0"
-  head "https://github.com/fluxninja/aperture.git", branch: "stable/v2.21.x"
+  head "https://github.com/fluxninja/aperture.git", branch: "main"
 
   bottle do
     root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl@2.21-2.21.0"
