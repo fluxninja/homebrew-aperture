@@ -318,8 +318,6 @@ class FormulaReplacements:
             Replacement(self.commit_hash,
                         lambda line: 'git_commit_hash' in line and '"' in line),
             Replacement(self.head_branch,
-                        lambda line: "branch:" in line.split()),
-            Replacement(self.head_branch,
                         lambda line: "head_branch=" in line),
             Replacement(self.archive_url, lambda line: "url" in line),
             Replacement(self.archive_hash, lambda line: "sha256" in line),
