@@ -7,9 +7,9 @@ class AperturectlAT227 < Formula
   head "https://github.com/fluxninja/aperture.git", branch: "main"
 
   bottle do
-    root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl@2.27-2.27.1-rc.1"
-    sha256 cellar: :any_skip_relocation, monterey:     "b33763bc758d8f4e7d0b8affd455ffcf10221529bebd232e22fa3a49aba9b80a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "96afa392038686b0b52de13fb87103d881f93276aa88298c6c5a97625369c356"
+    root_url "https://github.com/fluxninja/homebrew-aperture/releases/download/aperturectl@2.27-2.27.1"
+    sha256 cellar: :any_skip_relocation, monterey:     "39e419cb94519a6841109a360c4199aa07d53576b7f6aa69845e2e594c3986ba"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "b3d8e5a0f151331e9891b1b94d0524db3b42248aadbd07649f8517809d08faab"
   end
 
   keg_only :versioned_formula
